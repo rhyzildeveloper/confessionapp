@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confession App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-roboto">
+    <div class="container mx-auto p-4">
+        <!-- Header -->
+        <header class="text-center py-6">
+            <h1 class="text-4xl font-bold text-gray-800">Confession App</h1>
+            <p class="text-gray-600">Share your thoughts anonymously</p>
+        </header>
+
+        <!-- Confession Form -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Submit Your Confession</h2>
+            <form id="confessionForm">
+                <div class="mb-4">
+                    <textarea id="confessionText" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Write your confession here..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Submit</button>
+            </form>
+        </div>
+
+        <!-- Confessions List -->
+        <div class="mt-8">
+            <h2 class="text-2xl font-bold mb-4">Recent Confessions</h2>
+            <div id="confessionsList" class="space-y-4">
+                <!-- Confession Item -->
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <p class="text-gray-800">I once ate an entire cake by myself and blamed it on the dog.</p>
+                    <div class="text-right text-gray-500 text-sm">- Anonymous</div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <p class="text-gray-800">I have a secret stash of candy that I don't share with anyone.</p>
+                    <div class="text-right text-gray-500 text-sm">- Anonymous</div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <p class="text-gray-800">I pretend to be busy at work to avoid doing actual work.</p>
+                    <div class="text-right text-gray-500 text-sm">- Anonymous</div>
+                </div>
+                <!-- Add more confession items as needed -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('confessionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const confessionText = document.getElementById('confessionText').value;
+            if (confessionText.trim() !== '') {
+                const confessionItem = document.createElement('div');
+                confessionItem.className = 'bg-white p-4 rounded-lg shadow-md';
+                confessionItem.innerHTML = `
+                    <p class="text-gray-800">${confessionText}</p>
+                    <div class="text-right text-gray-500 text-sm">- Anonymous</div>
+                `;
+                document.getElementById('confessionsList').prepend(confessionItem);
+                document.getElementById('confessionText').value = '';
+            }
+        });
+    </script>
+</body>
+</html>
